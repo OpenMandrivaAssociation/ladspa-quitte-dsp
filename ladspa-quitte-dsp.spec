@@ -13,7 +13,6 @@ Source0:	preamp.tar.bz2
 Source1:	super-60.tar.bz2
 Source2:	unmatched.tar.bz2
 Source3:	clipper.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	ladspa-devel
 Requires:	ladspa
 
