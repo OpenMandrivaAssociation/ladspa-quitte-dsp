@@ -28,6 +28,8 @@ spiced 12AX7: analysis and a simple hard clipper
 %setup -c %name -a 1 -a 2 -a 3
 
 %build
+export CFLAGS="$RPM_OPT_FLAGS -fPIC"
+export CXXFLAGS="$RPM_OPT_FLAGS -fPIC" 
 for i in %plugins
 do
 cd $i
