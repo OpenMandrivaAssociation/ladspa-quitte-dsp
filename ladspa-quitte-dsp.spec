@@ -2,7 +2,7 @@
 
 Name: 	 	ladspa-quitte-dsp
 Version: 	1.0
-Release: 	 %mkrel 1
+Release: 	 %mkrel 2
 
 Summary: 	Guitar preamp plugins for ladspa
 URL:		http://quitte.de/dsp/
