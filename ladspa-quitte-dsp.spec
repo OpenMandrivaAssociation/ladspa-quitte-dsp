@@ -1,21 +1,25 @@
-%define plugins preamp super-60 unmatched clipper
-
-Name: 	 	ladspa-quitte-dsp
-Version: 	1.0
-Release: 	 %mkrel 2
+%define plugins caps clipper matched preamp pvoc super-60 unmatched
 
 Summary: 	Guitar preamp plugins for ladspa
-URL:		http://quitte.de/dsp/
+Name: 	 	ladspa-quitte-dsp
+Version: 	1.0
+Release: 	%mkrel 2
 License:	GPL
 Group:		Sound
-
-Source0:	preamp.tar.bz2
-Source1:	super-60.tar.bz2
-Source2:	unmatched.tar.bz2
-Source3:	clipper.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-buildroot
+URL:		http://quitte.de/dsp/
+Source0:	caps_0.4.2.tar.gz
+Source1:	clipper.tar.gz
+Source2:	matched.tar.gz
+Source3:	preamp.tar.gz
+Source4:	pvoc_0.1.12.tar.gz
+Source5:	super-60.tar.bz2
+Source6:	unmatched.tar.gz
+Patch0:		ladspa-quitte-dsp-1.0-cflags_fix.diff
+Patch1:		ladspa-quitte-dsp-1.0-no_strip_fix.diff
+BuildRequires:	fftw3-devel
 BuildRequires:	ladspa-devel
 Requires:	ladspa
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Digital guitar preamp plugins for ladspa courtesy of quitte.de.
@@ -25,32 +29,43 @@ unmatched: another 'cheap' amp/cabinet emulation
 spiced 12AX7: analysis and a simple hard clipper
 
 %prep
-%setup -c %name -a 1 -a 2 -a 3
+
+%setup -c %name -a1 -a2 -a3 -a4 -a5 -a6
+%patch0 -p1
+%patch1 -p1
 
 %build
-export CFLAGS="$RPM_OPT_FLAGS -fPIC"
-export CXXFLAGS="$RPM_OPT_FLAGS -fPIC" 
-for i in %plugins
-do
-cd $i
-%make
-cd ..
+export CFLAGS="%{optflags} -fPIC"
+export CXXFLAGS="%{optflags} -fPIC" 
+
+for i in %plugins; do
+    pushd ${i}*
+    %make OPTS="$CFLAGS"
+    popd
 done
 									
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/%{_libdir}/ladspa
-for i in %plugins
-do
-cd $i
-%makeinstall DEST=$RPM_BUILD_ROOT/%{_libdir}/ladspa
-cd ..
+rm -rf %{buildroot}
+
+install -d %{buildroot}%{_libdir}/ladspa
+
+for i in %plugins; do
+    pushd ${i}*
+    %makeinstall \
+	PREFIX=%{buildroot}%{_prefix} \
+	DEST=%{buildroot}%{_libdir}/ladspa \
+	PLUGDEST=%{buildroot}%{_libdir}/ladspa \
+	UTILDEST=%{buildroot}%{_bindir} \
+	MAN1DEST=%{buildroot}%{_mandir}/man1
+    popd
 done
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-/usr/lib/ladspa/*
-
+%{_bindir}/stretch
+%{_libdir}/ladspa/*
+%{_datadir}/ladspa/rdf/caps.rdf
+%{_mandir}/man1/stretch.1*
