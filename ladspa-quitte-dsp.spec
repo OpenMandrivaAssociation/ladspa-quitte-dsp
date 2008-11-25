@@ -18,6 +18,7 @@ Patch0:		ladspa-quitte-dsp-1.0-cflags_fix.diff
 Patch1:		ladspa-quitte-dsp-1.0-no_strip_fix.diff
 BuildRequires:	fftw3-devel
 BuildRequires:	ladspa-devel
+BuildRequires:	sndfile-devel
 Requires:	ladspa
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
