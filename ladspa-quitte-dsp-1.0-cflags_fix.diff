@@ -1,0 +1,112 @@
+diff -Naur ladspa-quitte-dsp-1.0/clipper/Makefile ladspa-quitte-dsp-1.0.oden/clipper/Makefile
+--- ladspa-quitte-dsp-1.0/clipper/Makefile	2002-11-11 20:23:48.000000000 +0100
++++ ladspa-quitte-dsp-1.0.oden/clipper/Makefile	2008-11-25 18:08:31.000000000 +0100
+@@ -7,13 +7,13 @@
+ 	sudo python -i ./run.py
+ 
+ $(PLUG).so: $(PLUG).o
+-	ld -shared -o $@ $<
++	gcc $(CFLAGS) -shared -o $@ $<
+ 
+ .c.s:
+-	gcc -O6 -I/usr/local/include -S $<
++	gcc $(CFLAGS) -S $<
+ 
+ .c.o:
+-	gcc -O2 -I/usr/local/include -c $<
++	gcc $(CFLAGS) -c $<
+ 
+ install: all
+ 	install -m 644 $(PLUG).so $(DEST)
+diff -Naur ladspa-quitte-dsp-1.0/matched/Makefile ladspa-quitte-dsp-1.0.oden/matched/Makefile
+--- ladspa-quitte-dsp-1.0/matched/Makefile	2003-11-02 15:43:05.000000000 +0100
++++ ladspa-quitte-dsp-1.0.oden/matched/Makefile	2008-11-25 18:08:55.000000000 +0100
+@@ -7,13 +7,13 @@
+ 	sudo python -i ./run.py
+ 
+ $(PLUG).so: $(PLUG).o
+-	ld -shared -o $@ $<
++	gcc $(CFLAGS) -shared -o $@ $<
+ 
+ .c.s:
+-	gcc -O6 -I/usr/local/include -S $<
++	gcc $(CFLAGS) -S $<
+ 
+ .c.o:
+-	gcc -O2 -I/usr/local/include -c $<
++	gcc $(CFLAGS) -c $<
+ 
+ install: all
+ 	install -m 644 $(PLUG).so $(DEST)
+diff -Naur ladspa-quitte-dsp-1.0/preamp/Makefile ladspa-quitte-dsp-1.0.oden/preamp/Makefile
+--- ladspa-quitte-dsp-1.0/preamp/Makefile	2003-10-30 10:56:05.000000000 +0100
++++ ladspa-quitte-dsp-1.0.oden/preamp/Makefile	2008-11-25 18:09:41.000000000 +0100
+@@ -10,13 +10,13 @@
+ 	sudo python -i preamp.py
+ 
+ $(PLUG).so: $(PLUG).o
+-	g++ -Wall $(OPTS) -shared -o $@ $<
++	g++ -Wall $(CFLAGS) -shared -o $@ $<
+ 
+ .c.s:
+-	gcc -O6 -I/usr/local/include -S $<
++	gcc $(CFLAGS) -S $<
+ 
+ .cc.o:
+-	g++ -Wall $(OPTS) -I/usr/local/include -c $<
++	g++ -Wall $(CFLAGS) -c $<
+ 
+ tags:
+ 	ctags *.cc *.h
+diff -Naur ladspa-quitte-dsp-1.0/pvoc-0.1.12/Makefile ladspa-quitte-dsp-1.0.oden/pvoc-0.1.12/Makefile
+--- ladspa-quitte-dsp-1.0/pvoc-0.1.12/Makefile	2008-01-15 11:59:12.000000000 +0100
++++ ladspa-quitte-dsp-1.0.oden/pvoc-0.1.12/Makefile	2008-11-25 18:10:03.000000000 +0100
+@@ -47,7 +47,7 @@
+ 	sudo python -i test.py
+ 
+ $(PLUG).so: $(PLUGOBJ) $(PVOCOBJ)
+-	$(CC) -nostartfiles -shared -o $@  $(PLUGOBJ) $(PVOCOBJ) $(PLUGLDOPTS) 
++	$(CC) $(CFLAGS) -nostartfiles -shared -o $@  $(PLUGOBJ) $(PVOCOBJ) $(PLUGLDOPTS) 
+ 
+ $(UTIL): $(UTILOBJ) $(PVOCOBJ)
+ 	$(CC) -o $@ $(UTILOBJ) $(PVOCOBJ) $(UTILLDOPTS)
+diff -Naur ladspa-quitte-dsp-1.0/super-60/Makefile ladspa-quitte-dsp-1.0.oden/super-60/Makefile
+--- ladspa-quitte-dsp-1.0/super-60/Makefile	2003-09-26 14:59:08.000000000 +0200
++++ ladspa-quitte-dsp-1.0.oden/super-60/Makefile	2008-11-25 18:10:28.000000000 +0100
+@@ -7,13 +7,13 @@
+ 	sudo python -i ./run.py
+ 
+ $(PLUG).so: $(PLUG).o
+-	ld -shared -o $@ $<
++	gcc $(CFLAGS) -shared -o $@ $<
+ 
+ .c.s:
+-	gcc -O6 -I/usr/local/include -S $<
++	gcc $(CFLAGS) -S $<
+ 
+ .c.o:
+-	gcc -O2 -I/usr/local/include -c $<
++	gcc $(CFLAGS) -c $<
+ 
+ install: all
+ 	install -m 644 $(PLUG).so $(DEST)
+diff -Naur ladspa-quitte-dsp-1.0/unmatched/Makefile ladspa-quitte-dsp-1.0.oden/unmatched/Makefile
+--- ladspa-quitte-dsp-1.0/unmatched/Makefile	2002-11-11 20:23:58.000000000 +0100
++++ ladspa-quitte-dsp-1.0.oden/unmatched/Makefile	2008-11-25 18:10:51.000000000 +0100
+@@ -7,13 +7,13 @@
+ 	sudo python -i ./run.py
+ 
+ $(PLUG).so: $(PLUG).o
+-	ld -shared -o $@ $<
++	gcc $(CFLAGS) -shared -o $@ $<
+ 
+ .c.s:
+-	gcc -O6 -I/usr/local/include -S $<
++	gcc $(CFLAGS) -S $<
+ 
+ .c.o:
+-	gcc -O2 -I/usr/local/include -c $<
++	gcc $(CFLAGS) -c $<
+ 
+ install: all
+ 	install -m 644 $(PLUG).so $(DEST)
