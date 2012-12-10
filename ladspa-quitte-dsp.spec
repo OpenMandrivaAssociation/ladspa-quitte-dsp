@@ -3,7 +3,7 @@
 Summary: 	Guitar preamp plugins for ladspa
 Name: 	 	ladspa-quitte-dsp
 Version: 	1.0
-Release: 	%mkrel 3
+Release: 	3
 License:	GPL
 Group:		Sound
 URL:		http://quitte.de/dsp/
@@ -20,7 +20,6 @@ BuildRequires:	fftw3-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	sndfile-devel
 Requires:	ladspa
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Digital guitar preamp plugins for ladspa courtesy of quitte.de.
@@ -34,6 +33,7 @@ spiced 12AX7: analysis and a simple hard clipper
 %setup -c %name -a1 -a2 -a3 -a4 -a5 -a6
 %patch0 -p1
 %patch1 -p1
+perl -pi -e "s/stderr, formats/stderr, \"%s\", formats/g" pvoc-0.1.12/stretch.cc
 
 %build
 export CFLAGS="%{optflags} -fPIC"
@@ -46,7 +46,6 @@ for i in %plugins; do
 done
 									
 %install
-rm -rf %{buildroot}
 
 install -d %{buildroot}%{_libdir}/ladspa
 
@@ -60,9 +59,7 @@ for i in %plugins; do
 	MAN1DEST=%{buildroot}%{_mandir}/man1
     popd
 done
-
-%clean
-rm -rf %{buildroot}
+chmod 755 %{buildroot}%{_libdir}/ladspa/*.so
 
 %files
 %defattr(-,root,root)
@@ -70,3 +67,25 @@ rm -rf %{buildroot}
 %{_libdir}/ladspa/*
 %{_datadir}/ladspa/rdf/caps.rdf
 %{_mandir}/man1/stretch.1*
+
+
+%changelog
+* Tue Nov 25 2008 Oden Eriksson <oeriksson@mandriva.com> 1.0-2mdv2009.1
++ Revision: 306685
+- fix deps (sndfile-devel)
+- fix build (P0,P1)
+- added pvoc and caps
+
+  + Thierry Vignaud <tvignaud@mandriva.com>
+    - rebuild
+    - fix build on x86_64 by compiling with -fPIC
+    - kill re-definition of %%buildroot on Pixel's request
+    - use %%mkrel
+    - import ladspa-quitte-dsp
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+
+* Mon Oct 13 2003 Austin Acton <aacton@yorku.ca> 1.0-1mdk
+- initial package
