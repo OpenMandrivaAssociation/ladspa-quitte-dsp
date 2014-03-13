@@ -1,14 +1,3 @@
-diff -Naur ladspa-quitte-dsp-1.0/caps-0.4.2/Makefile ladspa-quitte-dsp-1.0.oden/caps-0.4.2/Makefile
---- ladspa-quitte-dsp-1.0/caps-0.4.2/Makefile	2007-06-19 10:19:01.000000000 +0200
-+++ ladspa-quitte-dsp-1.0.oden/caps-0.4.2/Makefile	2008-11-25 18:20:33.000000000 +0100
-@@ -55,7 +55,6 @@
- 	@-if [ -x /usr/bin/ctags ]; then ctags $(SOURCES) $(HEADERS) ; fi
- 
- install: all
--	strip $(PLUG).so
- 	install -d $(DEST)
- 	install -m 644 $(PLUG).so $(DEST)
- 	install -d $(RDFDEST)
 diff -Naur ladspa-quitte-dsp-1.0/pvoc-0.1.12/Makefile ladspa-quitte-dsp-1.0.oden/pvoc-0.1.12/Makefile
 --- ladspa-quitte-dsp-1.0/pvoc-0.1.12/Makefile	2008-11-25 18:20:49.000000000 +0100
 +++ ladspa-quitte-dsp-1.0.oden/pvoc-0.1.12/Makefile	2008-11-25 18:20:37.000000000 +0100
