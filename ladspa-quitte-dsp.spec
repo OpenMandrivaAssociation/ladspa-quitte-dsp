@@ -1,4 +1,4 @@
-%define plugins clipper matched preamp pvoc super-60 unmatched
+%define plugins clipper matched preamp super-60 unmatched
 
 Summary: 	Guitar preamp plugins for ladspa
 Name: 	 	ladspa-quitte-dsp
@@ -10,7 +10,6 @@ URL:		http://quitte.de/dsp/
 Source0:	clipper.tar.gz
 Source1:	matched.tar.gz
 Source2:	preamp.tar.gz
-Source3:	pvoc_0.1.12.tar.gz
 Source4:	super-60.tar.bz2
 Source5:	unmatched.tar.gz
 Patch0:		ladspa-quitte-dsp-1.0-cflags_fix.diff
@@ -20,6 +19,7 @@ BuildRequires:	ladspa-devel
 BuildRequires:	sndfile-devel
 Requires:	ladspa
 Requires:	caps
+Requires:	pvoc
 
 %description
 Digital guitar preamp plugins for ladspa courtesy of quitte.de.
@@ -33,7 +33,7 @@ spiced 12AX7: analysis and a simple hard clipper
 %setup -c %name -a1 -a2 -a3 -a4 -a5 
 %patch0 -p1
 %patch1 -p1
-perl -pi -e "s/stderr, formats/stderr, \"%s\", formats/g" pvoc-0.1.12/stretch.cc
+
 
 %build
 export CFLAGS="%{optflags} -fPIC"
@@ -62,29 +62,4 @@ done
 chmod 755 %{buildroot}%{_libdir}/ladspa/*.so
 
 %files
-%defattr(-,root,root)
-%{_bindir}/stretch
 %{_libdir}/ladspa/*
-%{_mandir}/man1/stretch.1*
-
-
-%changelog
-* Tue Nov 25 2008 Oden Eriksson <oeriksson@mandriva.com> 1.0-2mdv2009.1
-+ Revision: 306685
-- fix deps (sndfile-devel)
-- fix build (P0,P1)
-- added pvoc and caps
-
-  + Thierry Vignaud <tvignaud@mandriva.com>
-    - rebuild
-    - fix build on x86_64 by compiling with -fPIC
-    - kill re-definition of %%buildroot on Pixel's request
-    - use %%mkrel
-    - import ladspa-quitte-dsp
-
-  + Olivier Blin <oblin@mandriva.com>
-    - restore BuildRoot
-
-
-* Mon Oct 13 2003 Austin Acton <aacton@yorku.ca> 1.0-1mdk
-- initial package
