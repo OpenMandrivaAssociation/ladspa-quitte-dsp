@@ -30,7 +30,7 @@ spiced 12AX7: analysis and a simple hard clipper
 
 %prep
 
-%setup -c %name -a1 -a2 -a3 -a4 -a5 
+%setup -c %name -a1 -a2 -a4 -a5 
 %patch0 -p1
 %patch1 -p1
 
