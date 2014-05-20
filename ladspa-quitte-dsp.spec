@@ -13,7 +13,6 @@ Source2:	preamp.tar.gz
 Source4:	super-60.tar.bz2
 Source5:	unmatched.tar.gz
 Patch0:		ladspa-quitte-dsp-1.0-cflags_fix.diff
-Patch1:		ladspa-quitte-dsp-1.0-no_strip_fix.diff
 BuildRequires:	fftw3-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	sndfile-devel
@@ -32,7 +31,6 @@ spiced 12AX7: analysis and a simple hard clipper
 
 %setup -c %name -a1 -a2 -a4 -a5 
 %patch0 -p1
-%patch1 -p1
 
 
 %build
