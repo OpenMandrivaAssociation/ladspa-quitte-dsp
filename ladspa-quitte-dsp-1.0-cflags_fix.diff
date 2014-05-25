@@ -59,17 +59,6 @@ diff -Naur ladspa-quitte-dsp-1.0/preamp/Makefile ladspa-quitte-dsp-1.0.oden/prea
  tags:
  	ctags *.cc *.h
 diff -Naur ladspa-quitte-dsp-1.0/pvoc-0.1.12/Makefile ladspa-quitte-dsp-1.0.oden/pvoc-0.1.12/Makefile
---- ladspa-quitte-dsp-1.0/pvoc-0.1.12/Makefile	2008-01-15 11:59:12.000000000 +0100
-+++ ladspa-quitte-dsp-1.0.oden/pvoc-0.1.12/Makefile	2008-11-25 18:10:03.000000000 +0100
-@@ -47,7 +47,7 @@
- 	sudo python -i test.py
- 
- $(PLUG).so: $(PLUGOBJ) $(PVOCOBJ)
--	$(CC) -nostartfiles -shared -o $@  $(PLUGOBJ) $(PVOCOBJ) $(PLUGLDOPTS) 
-+	$(CC) $(CFLAGS) -nostartfiles -shared -o $@  $(PLUGOBJ) $(PVOCOBJ) $(PLUGLDOPTS) 
- 
- $(UTIL): $(UTILOBJ) $(PVOCOBJ)
- 	$(CC) -o $@ $(UTILOBJ) $(PVOCOBJ) $(UTILLDOPTS)
 diff -Naur ladspa-quitte-dsp-1.0/super-60/Makefile ladspa-quitte-dsp-1.0.oden/super-60/Makefile
 --- ladspa-quitte-dsp-1.0/super-60/Makefile	2003-09-26 14:59:08.000000000 +0200
 +++ ladspa-quitte-dsp-1.0.oden/super-60/Makefile	2008-11-25 18:10:28.000000000 +0100
