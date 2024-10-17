@@ -6,7 +6,7 @@ Version: 	1.0
 Release: 	6
 License:	GPL
 Group:		Sound
-URL:		http://quitte.de/dsp/
+URL:		https://quitte.de/dsp/
 Source0:	clipper.tar.gz
 Source1:	matched.tar.gz
 Source2:	preamp.tar.gz
